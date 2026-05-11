@@ -1,0 +1,236 @@
+{
+  "abu_simbel_temple": {
+    "image_count": 40,
+    "failed_count": 0,
+    "embedding_shape": [
+      40,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "agiba_beach": {
+    "image_count": 23,
+    "failed_count": 0,
+    "embedding_shape": [
+      23,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "al_azhar_mosque": {
+    "image_count": 47,
+    "failed_count": 0,
+    "embedding_shape": [
+      47,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "al_montazah": {
+    "image_count": 38,
+    "failed_count": 0,
+    "embedding_shape": [
+      38,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "baron_palace": {
+    "image_count": 48,
+    "failed_count": 0,
+    "embedding_shape": [
+      48,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "bibliotheca_alexandrina": {
+    "image_count": 41,
+    "failed_count": 0,
+    "embedding_shape": [
+      41,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "cairo_tower": {
+    "image_count": 52,
+    "failed_count": 0,
+    "embedding_shape": [
+      52,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "egyptian_museum": {
+    "image_count": 28,
+    "failed_count": 0,
+    "embedding_shape": [
+      28,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "grand_egyptian_museum": {
+    "image_count": 47,
+    "failed_count": 0,
+    "embedding_shape": [
+      47,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "great_sphinx": {
+    "image_count": 52,
+    "failed_count": 0,
+    "embedding_shape": [
+      52,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "hanging_church": {
+    "image_count": 34,
+    "failed_count": 0,
+    "embedding_shape": [
+      34,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "hatshepsut_temple": {
+    "image_count": 52,
+    "failed_count": 0,
+    "embedding_shape": [
+      52,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "high_dam": {
+    "image_count": 18,
+    "failed_count": 0,
+    "embedding_shape": [
+      18,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "hurghada": {
+    "image_count": 9,
+    "failed_count": 0,
+    "embedding_shape": [
+      9,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "jabal_musa": {
+    "image_count": 11,
+    "failed_count": 0,
+    "embedding_shape": [
+      11,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "karnak": {
+    "image_count": 44,
+    "failed_count": 0,
+    "embedding_shape": [
+      44,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "nubia": {
+    "image_count": 49,
+    "failed_count": 0,
+    "embedding_shape": [
+      49,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "pyramids_of_giza": {
+    "image_count": 68,
+    "failed_count": 0,
+    "embedding_shape": [
+      68,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "qaitbay_citadel": {
+    "image_count": 36,
+    "failed_count": 0,
+    "embedding_shape": [
+      36,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "ras_mohammed_national_park": {
+    "image_count": 10,
+    "failed_count": 0,
+    "embedding_shape": [
+      10,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "rixos_al_alamein": {
+    "image_count": 40,
+    "failed_count": 0,
+    "embedding_shape": [
+      40,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "sahaba_mosque_sharm": {
+    "image_count": 36,
+    "failed_count": 0,
+    "embedding_shape": [
+      36,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "saint_catherine_monastery": {
+    "image_count": 40,
+    "failed_count": 0,
+    "embedding_shape": [
+      40,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "saladin_citadel": {
+    "image_count": 42,
+    "failed_count": 0,
+    "embedding_shape": [
+      42,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "siwa_oasis_salt_lake": {
+    "image_count": 36,
+    "failed_count": 0,
+    "embedding_shape": [
+      36,
+      512
+    ],
+    "source": "cloudinary"
+  },
+  "white_desert": {
+    "image_count": 40,
+    "failed_count": 0,
+    "embedding_shape": [
+      40,
+      512
+    ],
+    "source": "cloudinary"
+  }
+}

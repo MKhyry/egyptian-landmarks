@@ -1,0 +1,32 @@
+# ============================================================
+# Egyptian Landmark Recognition System - Backend Dependencies
+# ============================================================
+
+# Web framework
+fastapi==0.110.0
+uvicorn[standard]==0.27.1
+python-multipart==0.0.9      # For file uploads
+
+# AI / Machine Learning - THE CORE
+torch==2.2.1                 # PyTorch deep learning framework
+torchvision==0.17.1          # Image transforms + pretrained models
+open-clip-torch==2.24.0      # OpenAI CLIP model (vision + language)
+numpy==1.26.4                # Numerical operations on embeddings
+scikit-learn==1.4.0          # cosine_similarity, normalization
+
+# Image processing
+Pillow==10.2.0               # Image loading and preprocessing
+opencv-python==4.9.0.80      # Advanced image operations
+
+# Database
+pymongo==4.6.2               # MongoDB driver
+motor==3.3.2                 # Async MongoDB driver
+
+# Utilities
+python-dotenv==1.0.1         # Load .env file
+pydantic==2.6.3              # Data validation
+aiofiles==23.2.1             # Async file I/O
+tqdm==4.66.2                 # Progress bars for embedding script
+
+# CORS
+starlette==0.36.3

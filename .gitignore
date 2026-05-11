@@ -1,0 +1,168 @@
+# ============================================================
+# .gitignore — Egyptian Landmark Recognition System
+# ============================================================
+
+
+# ── NEVER COMMIT THESE ──────────────────────────────────────
+
+# Environment variables — contain secrets and local config
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env.local
+
+# Uploaded images — user data, not source code
+backend/uploads/
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Your dataset images — large binary files, managed separately
+backend/dataset/
+backend/dataset/*
+
+
+
+# ── PYTHON ──────────────────────────────────────────────────
+
+# Virtual environment
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Jupyter (if running notebooks locally)
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# PyTorch model cache
+# CLIP downloads its weights here automatically
+~/.cache/huggingface/
+~/.cache/clip/
+
+
+# ── NODE / NEXT.JS ───────────────────────────────────────────
+
+# Dependencies — installed with npm install
+frontend/node_modules/
+node_modules/
+
+# Next.js build output
+frontend/.next/
+frontend/out/
+
+# Next.js cache
+frontend/.next/cache/
+
+# Production build
+frontend/build/
+
+# npm / yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# TypeScript build info
+*.tsbuildinfo
+frontend/next-env.d.ts
+
+
+# ── OPERATING SYSTEM ────────────────────────────────────────
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+
+# ── EDITORS & IDEs ──────────────────────────────────────────
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# JetBrains (PyCharm, WebStorm)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim / Emacs
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+
+# ── LOGS & TEMP ─────────────────────────────────────────────
+
+*.log
+logs/
+tmp/
+temp/
+
+
+# ── WHAT IS TRACKED (reference) ─────────────────────────────
+# Everything not listed above is committed. That includes:
+#
+#   backend/
+#     ai/           — CLIP model wrappers, similarity engine
+#     api/          — FastAPI routes and schemas
+#     data/         — landmark descriptions (fill this in)
+#     database/     — MongoDB models and connection
+#     scripts/      — build_embeddings.py, seed_landmarks.py
+#     main.py       — FastAPI entry point
+#     requirements.txt
+#     .env.example  — safe template (no real secrets)
+#
+#   frontend/
+#     app/          — Next.js pages
+#     components/   — React components
+#     lib/          — API utility
+#     package.json, tsconfig.json, tailwind.config.ts, etc.
+#
+#   Egyptian_Landmark_Recognition.ipynb  — Colab prototype
+#   SETUP_GUIDE.md

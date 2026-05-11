@@ -1,0 +1,53 @@
+# render.yaml
+# ===========
+# Render deployment configuration for the Egyptian Landmark Recognition backend.
+# Place this file at the ROOT of your entire project (not inside backend/).
+#
+# HOW TO USE:
+#   1. Push your project to GitHub
+#   2. Go to https://dashboard.render.com → New → Blueprint
+#   3. Connect your GitHub repo — Render will find this file automatically
+#   4. Set the environment variables listed below in the Render dashboard
+#   5. Click Deploy
+
+services:
+  - type: web
+    name: egyptian-landmarks-api
+    runtime: python
+    region: frankfurt          # Change to: oregon, ohio, singapore, etc.
+    plan: free                 # Use 'starter' ($7/mo) for always-on service
+                               # Free tier spins down after 15min of inactivity
+                               # (first request after spin-down takes ~30–60s to reload CLIP)
+
+    # ── Build settings ──────────────────────────────────────────────────────
+    rootDir: backend           # Render runs everything from the backend/ folder
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+    # ── Health check ────────────────────────────────────────────────────────
+    # Render pings this URL to confirm the service is running
+    healthCheckPath: /api/health
+
+    # ── Environment variables ────────────────────────────────────────────────
+    # Set these in the Render dashboard under Environment → Environment Variables
+    # Do NOT hardcode secrets here — this file is committed to your repo
+    envVars:
+      - key: MONGODB_URL
+        sync: false            # You'll set this manually in the dashboard
+      - key: DATABASE_NAME
+        value: egyptian_landmarks
+      - key: CLIP_MODEL_NAME
+        value: ViT-B-32
+      - key: SIMILARITY_THRESHOLD
+        value: "0.65"
+      - key: EMBEDDINGS_PATH
+        value: ./embeddings_store
+      - key: ALLOWED_ORIGINS
+        sync: false            # Set to your Vercel frontend URL, e.g.:
+                               # https://your-app.vercel.app
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
