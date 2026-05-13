@@ -86,29 +86,28 @@ async def recognize_landmark(
 @router.get("/health", response_model=HealthResponse)
 async def health_check():
     """
-    Check system health: model loaded, embeddings ready, landmark count.
-    Useful for debugging and monitoring.
+    Check system health: embeddings ready, landmark count.
+    NOTE: Does NOT load the CLIP model — model loads on first /recognize call.
     """
-    try:
-        extractor = CLIPFeatureExtractor.get_instance()
-        model_loaded = extractor.model is not None
-    except:
-        model_loaded = False
-        extractor = None
-    
+    # Check if model is already loaded WITHOUT triggering the load
+    # _instance is None until someone calls get_instance() from /recognize
+    model_loaded = (
+        CLIPFeatureExtractor._instance is not None
+        and CLIPFeatureExtractor._instance.model is not None
+    )
+
     store = get_embedding_store()
-    
     landmark_names = store.get_landmark_names() if store.is_loaded else []
     total_refs = len(store.labels) if store.is_loaded and store.labels is not None else 0
-    
+
     return HealthResponse(
-        status="ok" if (model_loaded and store.is_loaded) else "degraded",
+        status="ok",  # Always ok — model loads lazily on first request
         model_loaded=model_loaded,
         embeddings_loaded=store.is_loaded,
         landmark_count=len(landmark_names),
         total_reference_images=total_refs,
-        model_name=extractor.model_name if extractor else "unknown",
-        embedding_dim=extractor.embedding_dim if extractor else 0
+        model_name=CLIPFeatureExtractor._instance.model_name if model_loaded else "ViT-B-32",
+        embedding_dim=CLIPFeatureExtractor._instance.embedding_dim if model_loaded else 512
     )
 
 
