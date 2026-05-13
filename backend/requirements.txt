@@ -8,8 +8,9 @@ uvicorn[standard]==0.27.1
 python-multipart==0.0.9      # For file uploads
 
 # AI / Machine Learning - THE CORE
-torch==2.2.1+cpu --extra-index-url https://download.pytorch.org/whl/cpu            # PyTorch deep learning framework
-torchvision==0.17.1+cpu --extra-index-url https://download.pytorch.org/whl/cpu     # Image transforms + pretrained models                  
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.1+cpu
+torchvision==0.17.1+cpu     # Image transforms + pretrained models                  
 open-clip-torch==2.24.0      # OpenAI CLIP model (vision + language)
 numpy==1.26.4                # Numerical operations on embeddings
 scikit-learn==1.4.0          # cosine_similarity, normalization
