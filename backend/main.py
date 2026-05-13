@@ -7,14 +7,15 @@ This file:
   - Creates the FastAPI app
   - Configures CORS (so the Next.js frontend can call the API)
   - Registers all routes
-  - Loads AI model + embeddings on startup
+  - Loads embeddings on startup
   - Connects to MongoDB
+  - CLIP model loads lazily on first recognition request (saves memory)
 
 STARTUP SEQUENCE:
   1. Connect to MongoDB
-  2. Load CLIP model (takes 5–30 seconds first time, cached after)
-  3. Load precomputed embeddings from disk
-  4. App is ready to serve requests
+  2. Load precomputed embeddings from disk
+  3. App is ready to serve requests
+  4. CLIP model loads automatically on first /api/recognize call
 
 RUN:
   uvicorn main:app --reload --host 0.0.0.0 --port 8000
@@ -47,29 +48,27 @@ async def lifespan(app: FastAPI):
     Application lifespan events.
     Everything before `yield` runs on startup.
     Everything after `yield` runs on shutdown.
+
+    NOTE: CLIP model is intentionally NOT loaded here.
+    Loading it at startup exceeds Railway's 1GB memory limit and
+    causes the healthcheck to fail. The model loads automatically
+    on the first recognition request via CLIPFeatureExtractor.get_instance()
+    which caches the instance — so it only loads once.
     """
     logger.info("=" * 60)
     logger.info("🏛️  Egyptian Landmark Recognition System")
     logger.info("=" * 60)
-    
+
     # ── Startup ────────────────────────────────────────────────────────────
-    
+
     # 1. Connect to MongoDB (non-fatal if not available)
     try:
         from database.db import connect_to_mongo
         await connect_to_mongo()
     except Exception as e:
         logger.warning(f"MongoDB unavailable: {e}")
-    
-    # 2. Preload the CLIP model (avoid cold start on first request)
-    logger.info("🤖 Preloading AI model...")
-    try:
-        from ai.model import CLIPFeatureExtractor
-        CLIPFeatureExtractor.get_instance()
-    except Exception as e:
-        logger.error(f"❌ Failed to load CLIP model: {e}")
-    
-    # 3. Load precomputed embeddings
+
+    # 2. Load precomputed embeddings from disk
     logger.info("📚 Loading landmark embeddings...")
     try:
         from ai.embeddings import get_embedding_store
@@ -80,12 +79,14 @@ async def lifespan(app: FastAPI):
             logger.warning("⚠️  Run 'python scripts/build_embeddings.py' to index your dataset")
     except Exception as e:
         logger.error(f"❌ Failed to load embeddings: {e}")
-    
+
+    # 3. CLIP model will load on first request — log a reminder
+    logger.info("🤖 CLIP model will load on first recognition request")
     logger.info("🚀 Server ready — API at http://localhost:8000")
     logger.info("📖 API docs at http://localhost:8000/docs")
-    
+
     yield
-    
+
     # ── Shutdown ───────────────────────────────────────────────────────────
     from database.db import close_mongo_connection
     await close_mongo_connection()
